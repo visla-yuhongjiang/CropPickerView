@@ -12,8 +12,12 @@ let package = Package(
             targets: ["CropPickerView"]
         ),
     ],
+    dependencies: [
+        // Dependencies declare other packages that this package depends on.
+        // .package(url: /* package url */, from: "1.0.0"),
+    ],
     targets: [
-		.target(
+	.target(
             name: "CropPickerView",
             path: "Source",
             exclude: [
