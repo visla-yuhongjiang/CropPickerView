@@ -19,10 +19,11 @@ let package = Package(
     targets: [
 	.target(
             name: "CropPickerView",
-            path: "Source",
+            path: ".",
             exclude: [
                 "Info.plist"
-            ]
+            ],
+            sources: ["Source"]
         ),
     ],
     swiftLanguageVersions: [.v5]
