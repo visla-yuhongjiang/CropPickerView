@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "CropPickerView",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v10),
     ],
