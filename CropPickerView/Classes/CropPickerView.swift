@@ -23,17 +23,17 @@ import UIKit
 // CropPickerView Delegate
 public protocol CropPickerViewDelegate: AnyObject {
     // Called when the image or error.
-    func cropPickerView(_ cropPickerView: CropPickerView, result: CropResult)
-    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect)
+    func cropPickerView(_ cropPickerView: VCropPickerView, result: CropResult)
+    func cropPickerView(_ cropPickerView: VCropPickerView, didChange frame: CGRect)
 }
 public extension CropPickerViewDelegate {
-    func cropPickerView(_ cropPickerView: CropPickerView, didChange frame: CGRect) {
+    func cropPickerView(_ cropPickerView: VCropPickerView, didChange frame: CGRect) {
 
     }
 }
 
 @IBDesignable
-public class CropPickerView: UIView {
+public class VCropPickerView: UIView {
     public weak var delegate: CropPickerViewDelegate?
     
     // MARK: Public Property
@@ -561,7 +561,7 @@ public class CropPickerView: UIView {
 }
 
 // MARK: Private Method Init
-extension CropPickerView {
+extension VCropPickerView {
     // Side button and corner button group of crops
     private var lineButtonGroup: [LineButton] {
         return [leftTopButton, leftBottomButton, rightTopButton, rightBottomButton, topButton, leftButton, bottomButton, rightButton, centerButton]
@@ -702,7 +702,7 @@ extension CropPickerView {
 }
 
 // MARK: Private Method Touch Action
-extension CropPickerView {
+extension VCropPickerView {
     // Center Button Double Tap
     @objc private func centerDoubleTap(_ sender: UITapGestureRecognizer) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -1004,7 +1004,7 @@ extension CropPickerView {
 }
 
 // MARK: Private Method Image
-extension CropPickerView {
+extension VCropPickerView {
     // Modify the contentOffset of the scrollView so that the scroll view fills the image.
     private func imageRealSize(_ animated: Bool = false) {
         if imageView.image == nil { return }
@@ -1025,7 +1025,7 @@ extension CropPickerView {
 }
 
 // MARK: Private Method Crop
-extension CropPickerView {
+extension VCropPickerView {
     private func isImageRateHeightGreaterThan(_ imageSize: CGRect) -> Bool {
         let widthRate =  bounds.width / imageSize.width
         let heightRate = bounds.height / imageSize.height
@@ -1034,7 +1034,7 @@ extension CropPickerView {
 }
 
 // MARK: Private Method Dim
-extension CropPickerView {
+extension VCropPickerView {
     // Modify the dim screen mask.
     private func dimLayerMask(_ duration: TimeInterval = 0.4, animated: Bool) {
         guard let cropLeadingConstraint = cropLeadingConstraint,
@@ -1070,7 +1070,7 @@ extension CropPickerView {
 }
 
 // MARK: LineButtonDelegate
-extension CropPickerView: LineButtonDelegate {
+extension VCropPickerView: LineButtonDelegate {
     // When highlighted on the line button disappears, Enable interaction for all buttons.
     func lineButtonUnHighlighted() {
         lineButtonTouchPoint = nil
@@ -1082,7 +1082,7 @@ extension CropPickerView: LineButtonDelegate {
 }
 
 // MARK: UIScrollViewDelegate
-extension CropPickerView: UIScrollViewDelegate {
+extension VCropPickerView: UIScrollViewDelegate {
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
         if scrollView.zoomScale <= 1 {
             let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
