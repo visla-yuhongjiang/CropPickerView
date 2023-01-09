@@ -329,7 +329,7 @@ public class VCropPickerView: UIView {
         super.init(coder: aDecoder)
     }
     
-    func setCropFrame(_ frame: CGRect) {
+    public func setCropFrame(_ frame: CGRect) {
         cropLeadingConstraint?.constant = -frame.origin.x
         cropTopConstraint?.constant = -frame.origin.y
         guard let tcropLeadingConstraint = cropLeadingConstraint, let tcropTopConstraint = cropTopConstraint else { return }
