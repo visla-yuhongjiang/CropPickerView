@@ -328,6 +328,15 @@ public class VCropPickerView: UIView {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func setCropFrame(_ frame: CGRect) {
+        cropLeadingConstraint?.constant = -frame.origin.x
+        cropTopConstraint?.constant = -frame.origin.y
+        guard let tcropLeadingConstraint = cropLeadingConstraint, let tcropTopConstraint = cropTopConstraint else { return }
+        cropTrailingConstraint?.constant = (scrollView.bounds.width - frame.width + tcropLeadingConstraint.constant)
+        cropBottomConstraint?.constant = (scrollView.bounds.height - frame.height + tcropTopConstraint.constant)
+        dimLayerMask(0, animated: false)
+    }
 
     // Max Image
     public func imageMaxAdjustment(_ duration: TimeInterval = 0.4, animated: Bool) {
